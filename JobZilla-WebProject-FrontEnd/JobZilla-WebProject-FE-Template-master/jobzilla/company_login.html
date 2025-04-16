@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobZilla - Company Access Platform</title>
+
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --light: #f8fafc;
+      --gray: #e2e8f0;
+      --gray-dark: #64748b;
+      --error: #ef4444;
+      --success: #10b981;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      width: 1000px;
+      height: 600px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -100px;
+      left: -100px;
+    }
+
+    .left-panel::after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      bottom: -50px;
+      right: -50px;
+    }
+
+    .branding {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .feature-icon {
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .feature-text {
+      font-size: 1rem;
+    }
+
+    .right-panel {
+      flex: 1;
+      background: white;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-header {
+      margin-bottom: 40px;
+    }
+
+    .login-header h2 {
+      font-size: 2rem;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: var(--gray-dark);
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid var(--gray);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group .error-message {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-group.error input {
+      border-color: var(--error);
+    }
+
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    .form-group .valid-domain {
+      color: var(--success);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-group.valid .valid-domain {
+      display: block;
+    }
+
+    .domain-hint {
+      color: var(--gray-dark);
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      color: var(--gray-dark);
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember input {
+      margin-right: 8px;
+    }
+
+    .forgot-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .login-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .social-login {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--gray);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .social-btn:hover {
+      background-color: var(--gray);
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .signup-link {
+      text-align: center;
+      color: var(--gray-dark);
+    }
+
+    .signup-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1000px) {
+      .container {
+        width: 90%;
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel, .right-panel {
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="left-panel">
+    <div class="branding">
+      <div class="logo">JobZilla</div>
+      <div class="tagline">Enterprise talent acquisition platform</div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="feature-text">Enterprise-grade security & compliance</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <div class="feature-text">Custom branded company profile</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <div class="feature-text">Advanced ATS with multi-user access</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+          </svg>
+        </div>
+        <div class="feature-text">Hiring analytics & performance metrics</div>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel">
+    <div class="login-header">
+      <h2>Access Your Platform</h2>
+      <p>Sign in with your company email</p>
+    </div>
+    <form id="loginForm">
+      <div class="form-group" id="emailGroup">
+        <div id="alertMessage"></div>
+
+        <label for="email">Company Email</label>
+        <input type="email" id="email" name="email" placeholder="you@yourcompany.com" required>
+        <div class="error-message" id="emailError">Please use your company email domain</div>
+        <div class="valid-domain" id="validDomain">Valid company domain verified</div>
+        <div class="domain-hint">Use your official company domain for enterprise access</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      <div class="remember-forgot">
+        <div class="remember">
+          <input  type="checkbox" id="remember" name="remember">
+          <label for="remember">Remember me</label>
+        </div>
+
+        <div id="logCredAlertMessage" class="mt-2"></div>
+
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+      <button type="button" class="login-btn" id="loginButton">Access to Platform</button>
+
+      <div class="signup-link">
+        <p>New to JobZilla? <a href="#">Register your company</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="lib/jquery-3.7.1.min.js "></script>
+<script src="js-pages/company-js/company_login.js"></script>
+<script src="js-pages/company-js/load__company_profile.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('email');
+    const emailGroup = document.getElementById('emailGroup');
+    const emailError = document.getElementById('emailError');
+    const validDomain = document.getElementById('validDomain');
+    const loginForm = document.getElementById('loginForm');
+
+
+    const personalEmailRegex = /@(gmail|yahoo|hotmail|aol|icloud|protonmail|zoho|yandex|mail)\.(com|net|org|co|io|me)$/i;
+
+    emailInput.addEventListener('blur', function() {
+      const email = emailInput.value.trim();
+
+      if (email && personalEmailRegex.test(email)) {
+        // Personal email detected
+        emailGroup.classList.add('error');
+        emailGroup.classList.remove('valid');
+        emailError.textContent = 'Please use your company domain email, not personal email';
+      } else if (email && email.includes('@') && !personalEmailRegex.test(email)) {
+        // Likely a company email
+        emailGroup.classList.remove('error');
+        emailGroup.classList.add('valid');
+      } else if (email) {
+        emailGroup.classList.add('error');
+        emailGroup.classList.remove('valid');
+        emailError.textContent = 'Please enter a valid email address';
+      } else {
+        emailGroup.classList.remove('error');
+        emailGroup.classList.remove('valid');
+      }
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+
+      if (personalEmailRegex.test(email)) {
+        emailGroup.classList.add('error');
+        emailGroup.classList.remove('valid');
+        emailError.textContent = 'Enterprise access requires your company domain email';
+        return false;
+      } else if (email && email.includes('@')) {
+        alert('Login successful with company email: ' + email);
+      } else {
+        emailGroup.classList.add('error');
+        emailGroup.classList.remove('valid');
+        emailError.textContent = 'Please enter a valid email address';
+        return false;
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
