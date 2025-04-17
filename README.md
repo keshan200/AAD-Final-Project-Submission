@@ -23,29 +23,25 @@ Welcome to JobZilla, a feature-rich and modern web application designed to conne
 ## 📸 Screenshots  
 
 ### Home  Page  
-![Home Page](readme_img/Screenshot20%2025-04-1620%213646.png)  
+![Job Listings](readme_img/home.png)  
+
+### Job Listing  
+![Job Listing](readme_img/jobListing.png)  
 
 ### Company Profile  
-![Company Profile](https://via.placeholder.com/800x400?text=Company+Profile)  
+![Company Profile](readme_img/companyDetail.png)  
 
-### Job Listings Page  
-![Job Listings](https://via.placeholder.com/800x400?text=Job+Listings+Page)  
+### User Details Page  
+![User Details](readme_img/userDetails.png)  
 
-### Company Profile  
-![Company Profile](https://via.placeholder.com/800x400?text=Company+Profile)  
+### user Profile  
+![user Profile](readme_img/userProfiles.png)  
 
-### Job Listings Page  
-![Job Listings](https://via.placeholder.com/800x400?text=Job+Listings+Page)  
+### chat Page  
+![chat](readme_img/chat.png)  
 
-### Company Profile  
-![Company Profile](https://via.placeholder.com/800x400?text=Company+Profile)  
-
-
-### Job Listings Page  
-![Job Listings](https://via.placeholder.com/800x400?text=Job+Listings+Page)  
-
-### Company Profile  
-![Company Profile](https://via.placeholder.com/800x400?text=Company+Profile)  
+### Company dashboard  
+![Company dashboard](readme_img/companyDashboard.png)  
 
 ---
 
