@@ -23,7 +23,7 @@ Welcome to JobZilla, a feature-rich and modern web application designed to conne
 ## 📸 Screenshots  
 
 ### Home  Page  
-![Job Listings](readme_img/Screenshot 2025-04-16 213646.png)  
+![Home Page](readme_img/Screenshot20%2025-04-1620%213646.png)  
 
 ### Company Profile  
 ![Company Profile](https://via.placeholder.com/800x400?text=Company+Profile)  
