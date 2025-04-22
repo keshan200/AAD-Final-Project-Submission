@@ -47,7 +47,7 @@ Welcome to JobZilla, a feature-rich and modern web application designed to conne
 
 ## 🎥 YouTube Tutorial  
 Watch the complete guide on how to use and set up JobZilla:  
-[![JobZilla YouTube Tutorial](https://via.placeholder.com/800x400?text=Watch+on+YouTube)]([https://youtu.be/rhJC0YZPhEA](https://youtu.be/kS58AzZMUMM))  
+[![JobZilla YouTube Tutorial](https://via.placeholder.com/800x400?text=Watch+on+YouTube)](https://youtu.be/kS58AzZMUMM)  
 
 ---
 
